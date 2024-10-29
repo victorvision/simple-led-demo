@@ -1,0 +1,11 @@
+pipelines:
+  default:
+    - step:
+        name: Sync GitHub Mirror
+        image: alpine/git:latest
+        clone:
+          enabled: false
+        script:
+          - git clone --branch master --single-branch --bare git@bitbucket.org:victorvisionpd/simple-led-demo.git
+          - cd simple-led-demo.git
+          - git push --mirror git@github.com:victorvision/simple-led-demo.git
